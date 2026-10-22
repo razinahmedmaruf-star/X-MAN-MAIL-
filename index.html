@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-MEN Temp Mail</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Font - Orbitron & Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+  <!-- QR Code Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #050505;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+
+    .font-xmen {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Red Dynamic Animated Background Gradient */
+    .bg-xmen-dynamic {
+      background: linear-gradient(-45deg, #000000, #1a0000, #3a0003, #0d0000, #000000);
+      background-size: 400% 400%;
+      animation: xmenGradient 12s ease infinite;
+    }
+
+    @keyframes xmenGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glowing Red Accents */
+    .glow-red-sm {
+      box-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
+    }
+    
+    .glow-red-lg {
+      box-shadow: 0 0 35px rgba(239, 68, 68, 0.7);
+    }
+
+    .text-glow-red {
+      text-shadow: 0 0 15px rgba(239, 68, 68, 0.9);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #991b1b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #dc2626;
+    }
+
+    /* Pulse animation for active status */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.1); }
+    }
+    .pulse-dot {
+      animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Opening Animation Styles */
+    #introOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .x-logo-anim {
+      animation: zoomGlow 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes zoomGlow {
+      0% {
+        transform: scale(0.2) rotate(-15deg);
+        opacity: 0;
+        filter: drop-shadow(0 0 0px #ef4444);
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 30px #ef4444);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+        filter: drop-shadow(0 0 45px #dc2626);
+      }
+    }
+
+    .glitch-text {
+      position: relative;
+      animation: textPulse 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes textPulse {
+      0% { text-shadow: 0 0 10px #dc2626, 0 0 20px #dc2626; }
+      100% { text-shadow: 0 0 25px #ef4444, 0 0 40px #ef4444, 0 0 60px #b91c1c; }
+    }
+  </style>
+</head>
+<body class="bg-xmen-dynamic min-h-screen flex flex-col justify-between text-gray-200">
+
+  <!-- OPENING INTRO ANIMATION OVERLAY -->
+  <div id="introOverlay">
+    <div class="relative flex flex-col items-center justify-center p-6 text-center">
+      <!-- Big Glowing X Icon -->
+      <div class="x-logo-anim w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-br from-red-600 via-red-900 to-black rounded-3xl border-2 border-red-500 flex items-center justify-center mb-8 shadow-2xl shadow-red-600/50">
+        <span class="font-xmen text-6xl sm:text-7xl font-black text-white italic">X</span>
+      </div>
+
+      <!-- Welcome Title -->
+      <p class="text-xs sm:text-sm font-semibold tracking-[0.3em] text-red-500 uppercase mb-2">ACCESS GRANTED</p>
+      <h1 class="font-xmen text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-widest uppercase glitch-text max-w-2xl">
+        WELCOME TO THE <span class="text-red-600">X-MEN WORLD</span>
+      </h1>
+
+      <!-- Subtitle Loading Bar -->
+      <div class="mt-8 w-48 sm:w-64 bg-zinc-900 rounded-full h-1.5 border border-red-900/60 overflow-hidden relative">
+        <div class="bg-gradient-to-r from-red-600 to-red-400 h-full w-full animate-[pulse_1s_infinite]"></div>
+      </div>
+      <p class="text-[10px] font-mono text-gray-500 mt-3 tracking-widest uppercase">INITIALIZING SECURE TEMP MAIL ENGINE...</p>
+    </div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="border-b border-red-900/40 bg-black/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Section -->
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.reload()">
+        <div class="w-11 h-11 bg-gradient-to-br from-red-600 to-black rounded-lg border border-red-500 flex items-center justify-center glow-red-sm">
+          <span class="font-xmen text-2xl font-black text-white italic">X</span>
+        </div>
+        <div>
+          <h1 class="font-xmen text-2xl font-black tracking-wider text-white flex items-center gap-1">
+            X-MEN <span class="text-red-600 text-glow-red">MAIL</span>
+          </h1>
+          <p class="text-[10px] text-red-500/80 tracking-widest uppercase font-semibold">Real-Time Disposable Mail</p>
+        </div>
+      </div>
+
+      <!-- Live Engine Badge -->
+      <div class="flex items-center space-x-3">
+        <div class="hidden sm:flex items-center space-x-2 bg-red-950/40 border border-red-800/50 px-3 py-1.5 rounded-full text-xs">
+          <span class="w-2 h-2 rounded-full bg-red-500 pulse-dot"></span>
+          <span class="text-gray-300 font-medium">1secmail Engine Active</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
+
+    <!-- Top Card: Email Generator & Actions -->
+    <div class="bg-black/70 border border-red-900/50 rounded-2xl p-6 mb-8 backdrop-blur-lg glow-red-sm relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-40 h-40 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Input Area -->
+        <div class="w-full md:w-2/3">
+          <label class="block text-xs font-semibold text-red-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved"></i> Your Temporary Address
+          </label>
+          <div class="relative flex items-center">
+            <input type="text" id="emailBox" readonly value="Generating address..." 
+              class="w-full bg-zinc-950 border border-red-800/60 rounded-xl py-3.5 pl-4 pr-12 text-white font-mono text-sm sm:text-base focus:outline-none focus:border-red-500 transition shadow-inner">
+            <button onclick="copyToClipboard()" title="Copy Email" class="absolute right-2 px-3 py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 hover:text-white rounded-lg transition">
+              <i class="fa-regular fa-copy text-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Buttons Grid -->
+        <div class="w-full md:w-1/3 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 gap-2 mt-2 md:mt-6">
+          <button onclick="copyToClipboard()" class="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-xl transition shadow-lg shadow-red-950/50 text-sm">
+            <i class="fa-solid fa-copy"></i> Copy
+          </button>
+          
+          <button onclick="checkMailManual()" class="flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-red-900/50 text-red-400 font-semibold py-3 px-4 rounded-xl transition text-sm">
+            <i class="fa-solid fa-rotate-right" id="refreshIcon"></i> Refresh
+          </button>
+
+          <button onclick="generateNewRandomEmail()" class="flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-red-900/50 text-gray-300 hover:text-red-400 font-semibold py-3 px-4 rounded-xl transition text-sm">
+            <i class="fa-solid fa-shuffle"></i> Change
+          </button>
+
+          <button onclick="openCustomModal()" class="flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-red-900/50 text-gray-300 hover:text-red-400 font-semibold py-3 px-4 rounded-xl transition text-sm">
+            <i class="fa-solid fa-pen-to-square"></i> Custom
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Quick Details Bar -->
+      <div class="mt-4 pt-4 border-t border-red-950/80 flex flex-wrap items-center justify-between text-xs text-gray-400 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span>Status: Auto-syncing every 5 sec</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <button onclick="showQRCode()" class="hover:text-red-400 transition flex items-center gap-1">
+            <i class="fa-solid fa-qrcode"></i> Show QR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Section: Inbox & Message Viewer Split Screen -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left Panel: Messages List (5 cols) -->
+      <div class="lg:col-span-5 bg-black/60 border border-red-900/40 rounded-2xl p-4 backdrop-blur-md flex flex-col h-[520px]">
+        
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-red-950">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-inbox text-red-500"></i>
+            <h2 class="font-xmen text-sm font-bold tracking-wider text-white">INBOX</h2>
+          </div>
+          <span id="msgCount" class="bg-red-950 text-red-400 border border-red-800/40 text-xs px-2.5 py-0.5 rounded-full font-mono">0 messages</span>
+        </div>
+
+        <!-- Inbox List Scrollable Container -->
+        <div id="inboxList" class="flex-1 overflow-y-auto space-y-2 pr-1">
+          <!-- Loading or Empty state dynamically injected here -->
+        </div>
+
+      </div>
+
+      <!-- Right Panel: Message Reader (7 cols) -->
+      <div class="lg:col-span-7 bg-black/60 border border-red-900/40 rounded-2xl p-6 backdrop-blur-md flex flex-col h-[520px]">
+        
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-red-950">
+          <h2 class="font-xmen text-sm font-bold tracking-wider text-white flex items-center gap-2">
+            <i class="fa-regular fa-envelope-open text-red-500"></i> MESSAGE DETAILS
+          </h2>
+          <div id="msgActions" class="hidden">
+            <button onclick="deleteCurrentMessage()" class="text-xs text-red-500 hover:text-red-400 transition flex items-center gap-1 bg-red-950/50 px-2.5 py-1 rounded border border-red-900/40">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+
+        <!-- Message Body Container -->
+        <div id="messageViewer" class="flex-1 overflow-y-auto">
+          <!-- Empty Placeholder State -->
+          <div class="h-full flex flex-col items-center justify-center text-gray-500 p-8 text-center">
+            <i class="fa-solid fa-paper-plane text-4xl mb-3 text-red-950"></i>
+            <p class="text-sm font-medium">Select an email from the inbox to read its content</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-red-900/30 bg-black/90 py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="font-xmen text-xs tracking-widest text-gray-500 mb-2">X-MEN TEMP MAIL ENGINE</p>
+      <p class="text-xs text-gray-600">Fast, Anonymous & Secure Temporary Email Address Service</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-red-600 text-white font-medium text-sm px-4 py-3 rounded-xl shadow-2xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-2 flex items-center gap-2 z-50">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg">Notification message</span>
+  </div>
+
+  <!-- Modal: Custom Username Creation -->
+  <div id="customModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-zinc-950 border border-red-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative glow-red-lg">
+      <button onclick="closeCustomModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      
+      <h3 class="font-xmen text-lg font-bold text-white mb-2 flex items-center gap-2">
+        <i class="fa-solid fa-sliders text-red-500"></i> CUSTOM EMAIL
+      </h3>
+      <p class="text-xs text-gray-400 mb-4">Type a username and select a domain from the list</p>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs text-gray-300 font-medium mb-1 block">Username</label>
+          <input type="text" id="customUser" placeholder="e.g. superhero123" class="w-full bg-zinc-900 border border-red-900/60 rounded-xl p-3 text-white focus:outline-none focus:border-red-500 text-sm font-mono">
+        </div>
+        <div>
+          <label class="text-xs text-gray-300 font-medium mb-1 block">Domain</label>
+          <select id="domainSelect" class="w-full bg-zinc-900 border border-red-900/60 rounded-xl p-3 text-white focus:outline-none focus:border-red-500 text-sm font-mono">
+            <!-- Populated dynamically via JavaScript -->
+          </select>
+        </div>
+        <button onclick="applyCustomEmail()" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-xl transition text-sm">
+          Set Custom Email
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: QR Code -->
+  <div id="qrModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-zinc-950 border border-red-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center relative glow-red-lg">
+      <button onclick="closeQRModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <h3 class="font-xmen text-base font-bold text-white mb-4">SCAN QR CODE</h3>
+      <div class="bg-white p-4 rounded-xl inline-block mb-4 shadow-inner" id="qrcode"></div>
+      <p class="text-xs text-gray-400 font-mono break-all" id="qrEmailText"></p>
+    </div>
+  </div>
+
+  <!-- Application Logic JavaScript -->
+  <script>
+    // --- Configuration & Global State ---
+    const API_BASE = "https://www.1secmail.com/api/v1/";
+    let currentLogin = "";
+    let currentDomain = "";
+    let availableDomains = ["1secmail.com", "1secmail.org", "1secmail.net"];
+    let messages = [];
+    let activeMsgId = null;
+    let pollTimer = null;
+
+    // --- Sci-Fi Audio Synthesizer (Web Audio API) ---
+    function playSciFiSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Sub-bass sweep
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(120, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 1.2);
+        
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.2);
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.start();
+        osc.stop(ctx.currentTime + 1.2);
+      } catch (e) {
+        console.log('Audio Context restricted or not supported');
+      }
+    }
+
+    // --- Core Startup Initialization & Intro ---
+    window.addEventListener("DOMContentLoaded", async () => {
+      playSciFiSound();
+
+      // Dismiss Intro Animation after 3 seconds
+      setTimeout(() => {
+        const overlay = document.getElementById("introOverlay");
+        overlay.style.opacity = "0";
+        overlay.style.visibility = "hidden";
+      }, 3000);
+
+      await fetchDomains();
+      
+      // Load saved email or generate new one
+      const saved = localStorage.getItem("xmen_temp_email");
+      if (saved && saved.includes("@")) {
+        const parts = saved.split("@");
+        currentLogin = parts[0];
+        currentDomain = parts[1];
+      } else {
+        generateRandomIdentity();
+      }
+
+      updateEmailUI();
+      checkMail();
+
+      // Set Auto Polling interval (5 seconds)
+      pollTimer = setInterval(checkMail, 5000);
+    });
+
+    // --- API Calls & Mail Handling ---
+
+    // 1. Fetch Working Domains from 1secmail
+    async function fetchDomains() {
+      try {
+        const res = await fetch(`${API_BASE}?action=getDomainList`);
+        const domains = await res.json();
+        if (domains && domains.length > 0) {
+          availableDomains = domains;
+        }
+      } catch (err) {
+        console.warn("Using fallback domains list.");
+      }
+      populateDomainDropdown();
+    }
+
+    // 2. Generate Random Identity
+    function generateRandomIdentity() {
+      const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+      let res = "xmen_";
+      for (let i = 0; i < 7; i++) {
+        res += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      currentLogin = res;
+      currentDomain = availableDomains[Math.floor(Math.random() * availableDomains.length)];
+      saveEmailState();
+    }
+
+    // 3. Save to LocalStorage
+    function saveEmailState() {
+      localStorage.setItem("xmen_temp_email", `${currentLogin}@${currentDomain}`);
+    }
+
+    // 4. Update Header Input Box
+    function updateEmailUI() {
+      const fullEmail = `${currentLogin}@${currentDomain}`;
+      document.getElementById("emailBox").value = fullEmail;
+    }
+
+    // 5. Fetch Messages from API
+    async function checkMail() {
+      if (!currentLogin || !currentDomain) return;
+
+      try {
+        const res = await fetch(`${API_BASE}?action=getMessages&login=${currentLogin}&domain=${currentDomain}`);
+        const data = await res.json();
+        
+        if (Array.isArray(data)) {
+          if (data.length > messages.length) {
+            showToast("New message received!");
+          }
+          messages = data;
+          renderInbox();
+        }
+      } catch (err) {
+        console.error("Failed to check mail:", err);
+      }
+    }
+
+    // Manual Refresh Trigger
+    async function checkMailManual() {
+      const icon = document.getElementById("refreshIcon");
+      icon.classList.add("fa-spin");
+      await checkMail();
+      setTimeout(() => icon.classList.remove("fa-spin"), 600);
+      showToast("Inbox refreshed");
+    }
+
+    // Render Inbox List
+    function renderInbox() {
+      const inboxList = document.getElementById("inboxList");
+      const msgCount = document.getElementById("msgCount");
+
+      msgCount.innerText = `${messages.length} message${messages.length !== 1 ? 's' : ''}`;
+
+      if (messages.length === 0) {
+        inboxList.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center p-6 text-gray-500">
+            <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-red-600"></i>
+            <p class="text-xs font-mono">Waiting for incoming emails...</p>
+            <p class="text-[10px] text-gray-600 mt-1">Your inbox updates automatically</p>
+          </div>
+        `;
+        return;
+      }
+
+      inboxList.innerHTML = messages.map(msg => `
+        <div onclick="read
